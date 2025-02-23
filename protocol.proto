@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package pow.protocol;
+
+option go_package = "./protocol";
+
+message ServerMessage {
+  message Challenge {
+    int32 difficulty = 1;
+    bytes challenge = 2;
+  }
+
+  message ChallengeFailed {
+  }
+
+  message WordOfWisdom {
+    string quote = 1;
+  }
+
+  int64 timestamp = 1;
+  reserved 2 to 1000;
+  oneof data {
+    Challenge challenge = 1001;
+    ChallengeFailed challenge_failed = 1002;
+    WordOfWisdom word_of_wisdom = 1003;
+  }
+}
+
+message ClientMessage {
+  message ChallengeSolved {
+    bytes nonce = 1;
+  }
+
+  int64 timestamp = 1;
+  reserved 2 to 1000;
+  oneof data {
+    ChallengeSolved challenge_solved = 1001;
+  }
+}

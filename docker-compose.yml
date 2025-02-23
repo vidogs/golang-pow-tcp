@@ -1,0 +1,32 @@
+---
+version: '3.7'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: server.Dockerfile
+    environment:
+      POW_CONFIG_FILE: /config/config.yaml
+      POW_BIND_HOST: 0.0.0.0
+      POW_BIND_PORT: 9000
+      POW_LOG_LEVEL: debug
+      POW_LOG_FORMAT: text
+      POW_SOLVE_TIMEOUT: 30s
+      POW_SETTINGS_CHALLENGE_LENGTH: 32
+      POW_SETTINGS_CHALLENGE_DIFFICULTY: 6
+    restart: always
+    ports:
+      - '9000:9000'
+
+  client:
+    build:
+      context: .
+      dockerfile: client.Dockerfile
+    environment:
+      POW_CONFIG_FILE: /config/config.yaml
+      POW_SERVER_HOST: server
+      POW_SERVER_PORT: 9000
+      POW_LOG_LEVEL: debug
+      POW_LOG_FORMAT: text
+    restart: no

@@ -1,0 +1,19 @@
+---
+bind:
+  host: 0.0.0.0
+  port: 9000
+logger:
+  level: debug # trace,debug,info,warn,error,fatal,panic
+  format: text # text,json
+settings:
+  challenge:
+    length: 32 # byte length
+    difficulty: 5 # number of leading zeros
+  solve_timeout: 5s
+dao:
+  words_of_wisdom:
+    - We must believe that we are gifted for something, and that this thing, at whatever cost, must be attained.
+    - Knowledge is love and light and vision.
+    - When one door of happiness closes, another one opens; but we look so long at the closed door that we do not see the one which has opened for us.
+    - Poor eyes limit your sight; poor vision limits your deeds.
+    - I do not pray for success. I ask for faithfulness.
